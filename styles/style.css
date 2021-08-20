@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+}
+body{
+    background-color: #A4B0F5;
+}
+/* Navigation */
+nav{
+    background-color: whitesmoke;
+    padding:1.2em;
+    display: flex;
+    justify-content: space-between;
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+#brand{
+    width:20%; 
+    display: flex;
+    align-items: center;
+}
+#menu{
+    width:60%;
+}
+#login-reg{
+    width:20%;
+}
+/* Body */
+section{
+    min-height:100vh;
+}
+section#features{
+    min-height: 25vh;
+    background-color: antiquewhite;
+}
+footer{
+    min-height: 25vh;
+    background-color: #4464AD;
+}
