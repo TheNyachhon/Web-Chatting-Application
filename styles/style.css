@@ -2,42 +2,381 @@
     box-sizing: border-box;
     margin:0;
 }
-body{
-    background-color: #A4B0F5;
+html{
+    scroll-behavior: smooth;
+}
+button{
+    outline: none;
+}
+a{
+    text-decoration: none;
+}
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 0.8rem;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #92FE9D;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #92CA9D;
+}
+/* Dropdown button */
+#dropdown{
+    position:fixed;
+    width:100%;
+    margin:1em 1em;
+    cursor: pointer;
+    z-index:2;
+}
+#dropdown img{
+    width:1.8em;
+    object-fit: cover;
+}
+header{
+    display: none;
+    position: fixed;
+    width:100vw;
+    z-index: 1;
 }
 /* Navigation */
 nav{
-    background-color: whitesmoke;
-    padding:1.2em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size:1.1em;
+    height: 100vh;
+    background: linear-gradient(180deg, #6F3DFC 0%, #00C9FF 100%);
+    padding:2em 0;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 nav ul{
+    width:100%;
     list-style: none;
     display: flex;
-    justify-content: space-evenly;
-    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:0;
 }
 #brand{
-    width:20%; 
+    font-family: 'Rampart One', cursive;
+    font-size: 2.5em;
+    width:100%; 
+    height:20%;
     display: flex;
+    justify-content: center;
     align-items: center;
+    color:white;
 }
 #menu{
-    width:60%;
+    width:100%;
+    height: 80%;
+    display: flex;
+}
+#menu li{
+    color:white;
+    margin:1em 0;
+    padding:0.8em 1em;
+    border:1px solid white;
+    min-width: 7em;
+    border-radius:0.3em;
+    text-align: center;
+    transition: all 0.2s;
+}
+#menu li:active{
+    transform: translateX(1em);
 }
 #login-reg{
-    width:20%;
+    height:20%;
+    width:100%;
+    display: flex;
+}
+#login-reg button{
+    font-family: 'Besley', serif;
+    font-size:0.9em;
+    cursor: pointer;
+    margin:1em 0;
+    padding:0.5em 1em;
+    border-radius:1.5em;
+    border: none;
+    color:white;
+    transition: all 0.2s;
+}
+#login-reg button:active{
+    transform:translateY(0.3em)
+}
+#login-btn{
+    background:none;
+}
+#login-btn:hover{
+    background-color:#00C9FFFF;
+}
+#reg-btn{
+    background-color: #FE2f02;
+}
+/* Scroll down */
+#down{
+    position:absolute;
+    bottom:0;
+    right:0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5%;
+}
+#down a{
+    color:white;
+    text-align: center;
+}
+#down img{
+    width: 3em;
+}
+#down img:active{
+    transform: translateY(-1em);
+}
+/* GO up */
+#goup{
+    display: none;
+    position:fixed;
+    bottom:1em;
+    right:1em;
+    height: 10%;
+    z-index: 1;
+}
+#goup img{
+    max-width:80%;
+    max-height:80%;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#goup img:active{
+    transform:translateY(-2em); 
+    cursor:pointer; 
 }
 /* Body */
 section{
     min-height:100vh;
+    padding:4em 3em;
+    display: flex;
+    flex-direction: column;
+    /* justify-content:space-between; */
+    justify-content: flex-start;
+    font-family: poppins;
+    
 }
-section#features{
-    min-height: 25vh;
-    background-color: antiquewhite;
+section p{
+    line-height: 2.5em;
+    text-align: justify;
+    color:#304352;
+    margin-bottom: 1em;
+}
+section h2{
+    text-align: center;
+    font-size:2em;
+    color:white;
+    letter-spacing:0.3em;
+    margin-bottom:1em;
+}
+#home{
+    background: #00C9FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #92FE9D, #00C9FF);
+    background: linear-gradient(to top, #92FE9D, #00C9FF); 
+    align-items: center;
+    justify-content: center;
+}
+#home h1{
+    font-family: 'Rampart One', cursive;
+    font-weight: 500;
+    font-size: 4.5em;
+    color:#f8f8ff;
+}
+#home p{
+    font-size: 1.3em;
+    line-height: normal;
+    font-weight: 600;
+    text-align: center;
+    color: #36454fDD;
+    /* color:white */
+}
+#about{
+    background: linear-gradient(180deg, #92FE9D 0%, #EFFF3D 100%);
+    display: flex;
+}
+@keyframes animate {
+    0%{
+        transform: translateY(-2em);
+    }
+    50%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-2em);
+    }
+}
+#about img{
+    width:100%;
+    animation-duration: 3s;
+    animation-name: animate;
+    animation-iteration-count:infinite;
+}
+.tuned{
+    font-weight: 600;
+    color:#FE2f02;
+}
+#features{
+    background: linear-gradient(180deg, #EFFF3D 0%, #FF5038 100%);
+}
+.box{
+    /* Glassmorphism */
+    background: rgba( 255, 255, 255, 0.10 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.0px );
+    -webkit-backdrop-filter: blur( 7.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    /* Other parameters */
+    /* min-height:10vh; */
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:1.5em;
+}
+.box-heading{
+    text-align: center;
+    color: #DDE3FD;
+    font-weight: 600;
+    font-size: 1.3em;
+}
+.box-image{
+    text-align: center;
+    margin:1em 0;
+    height:auto;
+    width:100%;
+}
+.box img{
+    width:25%;
 }
 footer{
-    min-height: 25vh;
-    background-color: #4464AD;
+    min-height: 45vh;
+    background-color: #304352;
+    padding:1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#EFFF3D;
+    letter-spacing: 0.2em;
+    text-align: center;
+    line-height: 1.5em;
+    font-weight: 400;
+
+}
+@media(max-width:650px){
+    #home h1{
+        font-size: 4em;
+    }
+    #home p{
+        font-size: 1.2em;
+    }
+}
+@media(max-width:400px){
+    #home h1{
+        font-size: 3em;
+    }
+    #home p{
+        font-size: 1.1em;
+    }
+}
+@media(min-width:990px){
+    #dropdown{
+        display: none;
+    }
+    nav{
+        position:fixed;
+        width: 100%;
+        height:5vh;
+        flex-direction: row;
+        align-items: center;
+        font-size: 1.3em;
+        font-weight: 300;
+        background: none;
+    }
+    nav ul{
+        flex-direction: row;
+        justify-content: center;
+    }
+    nav li{
+        margin:5em;
+        padding:0;
+    }
+    #brand{
+        width:30%; 
+        height:auto;
+        font-size: 2em;
+    }
+    #menu{
+        width:100%;
+        height:inherit;
+    }
+    #menu li{
+        border: none;
+        text-align: center;
+        padding:0;
+    }
+    #menu li:hover{
+        transform: translateY(-0.3em);
+    }
+    #login-reg{
+        width:30%;
+        height:inherit;
+        align-items: center;
+    }
+    #login-reg ul{
+        justify-content: center;
+    }
+    #login-reg button{
+        padding:0.2em 1em;
+        margin:0 1em;
+        font-family: "poppins",sans-serif;
+        font-weight: 300;
+    }
+    #home h1{
+        font-size: 5.5em;
+    }
+    #home p{
+        font-size: 1.3em;
+        text-align: center;
+        color: #36454fDD;
+        /* color:white */
+    }
+    section{
+        justify-content:flex-start;
+    }
+    section h2{
+        margin-top: 1em;
+    }
+    .content{
+        padding:1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #about img{
+        padding:1em;
+        width:100%;
+        height: 80%;
+    }
+    .box{
+        /* font-size: 1em; */
+        width:30%;
+    }
+    .box-heading{
+        font-weight: 600;
+        font-size: 1.5em;
+    }
 }

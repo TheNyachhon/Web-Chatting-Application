@@ -7,54 +7,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles/style.css">
+    <!-- icon -->
+    <link rel="icon" href="imgs/HC.svg" type="image/svg+xml">
     <!-- Fonts -->
-
-    <title>CHAT APP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- poppins semi-bold 600, poppins light 300, rampart one regular 400, besley bold 700-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Besley:wght@700&family=Poppins:wght@300;600&family=Rampart+One&display=swap"
+        rel="stylesheet">
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>HamroCHAT</title>
 </head>
 
 <body>
-    <header>
+    <div id="dropdown" onclick="openclosenav()">
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <img id="dropdown-img" src="imgs/dropdown.png" alt="dropdown menu">
+    </div>
+    <header id="tocollapse">
         <nav>
             <div id="brand">
-                <strong>WebCHAT</strong>
+                <strong>HC</strong>
             </div>
             <div id="menu">
                 <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Features</li>
+                    <a href="#home" class="nav-items">
+                        <li>Home</li>
+                    </a>
+                    <a href="#about" class="nav-items">
+                        <li>About</li>
+                    </a>
+                    <a href="#features" class="nav-items">
+                        <li>Features</li>
+                    </a>
                 </ul>
             </div>
             <div id="login-reg">
                 <ul>
-                    <button>Login</button>/
-                    <button>Register Now</button>
+                    <a href="#"><button id="login-btn">Login</button></a>
+                    <a href="#"><button id="reg-btn">Register</button></a>
                 </ul>
             </div>
         </nav>
     </header>
     <main>
+        <div id="goup">
+            <a href="#home">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="imgs/up.png" alt="TOP">
+            </a>
+        </div>
         <section id="home">
-            <div class="right-content">
+            <h1>HamroCHAT</h1>
+            <p>The only Chat app you'll ever need</p>
+            <div id="down">
+                <a href="#about">
+                    <img src="imgs/down.svg" alt="scroll down?">
+                </a>
             </div>
-            <div class="left-content">
+        </section>
+        <section id="about">
+            <div class="content-heading">
+                <h2>ABOUT</h2>
+            </div>
+            <div class="content">
+                <div class="content-1">
+                    <p>Made with utmost care, and keeping in mind of our valuable users, We bring to you HamroCHAT.
+                        Hamro in nepali means "Our". It is to describe unity, and togetherness which we plan on bringing
+                        with this very application of ours.</p>
+                    <p>Currently pursing 3rd year in our Bachelors in Computer Science and Engineering, This project is
+                        and will always be of great importance to us. The sole purpose of this creation of ours is to
+                        bridge the gap between two individuals by means of communcation.</p>
+                    <p>Initially, We have just introduced a basic chatting module, but we have bigger plans for the
+                        future <span class="tuned">Stay tuned!</span></p>
+                </div>
+                <div class="content-2">
+                    <img src="imgs/saly.svg" alt="Saly on computer">
+                </div>
             </div>
         </section>
         <section id="features">
+            <div class="content-heading">
+                <h2>FEATURES</h2>
+            </div>
             <div class="content">
                 <div class="box">
+                    <div class="box-heading">SECURE</div>
+                    <div class="box-image">
+                        <img src="imgs/secure.svg" alt="secure">
+                    </div>
+                    <p>Security is what we all yearn for. Thus, You can login/register with your google account, or our
+                        secure login. You can rest assure your data will be safe and sound with us.</p>
                 </div>
                 <div class="box">
+                    <div class="box-heading">CHAT</div>
+                    <div class="box-image">
+                        <img src="imgs/message.svg" alt="message">
+                    </div>
+                    <p>We make communication easy and simple. From your part of the world, to any part of the world, It
+                        is possible and absolutely for free.</p>
                 </div>
                 <div class="box">
+                    <div class="box-heading">USER FRIENDLY UI</div>
+                    <div class="box-image">
+                        <img src="imgs/chill.svg" alt="chill">
+                    </div>
+                    <p>Built with great care and keeping in mind the tiniest details, so you can navgiate through the
+                        website hassle
+                        free. Take a chill pill, and enjoy!</p>
                 </div>
             </div>
         </section>
     </main>
     <footer>
         <div class="footer-content">
+            <p>Made with ♥</p>
+            <p>All rights reserved - Copyrights@2021</p>
         </div>
     </footer>
+    <script src="index.js"></script>
 </body>
 
 </html>
