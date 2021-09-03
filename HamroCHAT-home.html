@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- icon -->
+    <link rel="icon" href="imgs/HC.svg" type="image/svg+xml">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- poppins semi-bold 600, poppins light 300, rampart one regular 400, besley bold 700, Roboto medium 500-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Besley:wght@700&family=Poppins:wght@300;600&family=Rampart+One&family=Roboto:wght@500&display=swap"
+        rel="stylesheet">
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d1f574ea7a.js" crossorigin="anonymous"></script>
+    <title>HamroCHAT - Home</title>
+</head>
+
+<body>
+    <div id="dropdown" onclick="openclosenav()">
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <img id="dropdown-img" src="imgs/dropdown.png" alt="dropdown menu">
+    </div>
+    <header id="tocollapse">
+        <nav>
+            <div id="brand">
+                <strong>HC</strong>
+            </div>
+            <div id="menu">
+                <ul>
+                    <a href="help.html" class="nav-items">
+                        <li>Help</li>
+                    </a>
+                </ul>
+            </div>
+            <div id="login-reg">
+                <ul>
+                    <a href="home.html"><button id="logout">Log Out?</button></a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="goup">
+            <a href="#login">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="imgs/up.png" alt="TOP">
+            </a>
+        </div>
+        <section id="chat">
+            <div id="chat-container">
+                <div id="chat-header">
+                    <div id="chat-header-img">
+                        <img src="imgs/me.JPG" alt="user-img">
+                    </div>
+                    <div id="chat-header-name">
+                        Rujin Shrestha
+                    </div>
+                    <!-- Green if online, otherwise offline -->
+                    <div id="chat-header-onoff">
+                        <img src="imgs/online.svg" alt="Active">
+                    </div>
+                </div>
+                <div id="chat-content">
+                    <div id="chat-search">
+                        <form action="">
+                            <div id="chat-search-image">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <input id="chat-search-bar" type="text"
+                                placeholder="Select or search user to start chatting">
+                        </form>
+                    </div>
+                    <div id="chat-users">
+                        <div class="user">
+                            <a href="HamroCHAT-message.html">
+                                <div class="user-img">
+                                    <i class="far fa-user"></i>
+                                </div>
+                                <div class="name-status">
+                                    <div class="name">
+                                        Nishit Shah
+                                    </div>
+                                    <div class="status">
+                                        <img src="imgs/online.svg" alt="Active">
+                                        Active
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="user-chat">
+                                <a href="HamroCHAT-user-profile.html"><i class="far fa-address-card"></i></a>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <div class="user-img">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="name-status">
+                                <div class="name">
+                                    Sijan Shrestha
+                                </div>
+                                <div class="status">
+                                    <img src="imgs/online.svg" alt="Active">
+                                    Active
+                                </div>
+                            </div>
+                            <div class="user-chat">
+                                <a href=""><i class="far fa-address-card"></i></a>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <div class="user-img">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="name-status">
+                                <div class="name">
+                                    Shubham Raj Bhattarai</div>
+                                <div class="status">
+                                    <img src="imgs/offline.svg" alt="offline">
+                                    Offline
+                                </div>
+                            </div>
+                            <div class="user-chat">
+                                <a href=""><i class="far fa-address-card"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="index.js"></script>
+
+    </main>
+</body>
+
+</html>
