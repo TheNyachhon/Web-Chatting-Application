@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- icon -->
+    <link rel="icon" href="imgs/HC.svg" type="image/svg+xml">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- poppins semi-bold 600, poppins light 300, rampart one regular 400, besley bold 700, Roboto medium 500-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Besley:wght@700&family=Poppins:wght@300;600&family=Rampart+One&family=Roboto:wght@500&display=swap"
+        rel="stylesheet">
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d1f574ea7a.js" crossorigin="anonymous"></script>
+    <title>HamroCHAT - Register</title>
+</head>
+
+<body>
+    <div id="dropdown" onclick="openclosenav()">
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <img id="dropdown-img" src="imgs/dropdown.png" alt="dropdown menu">
+    </div>
+    <header id="tocollapse">
+        <nav>
+            <div id="brand">
+                <strong>HC</strong>
+            </div>
+            <div id="menu">
+                <ul>
+                    <a href="home.html" class="nav-items">
+                        <li>Home</li>
+                    </a>
+                </ul>
+            </div>
+            <div id="login-reg">
+                <ul>
+                    <a href="login.html"><button id="login-btn">Login</button></a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="goup">
+            <a href="#register">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="imgs/up.png" alt="TOP">
+            </a>
+        </div>
+        <section id="register">
+            <div class="image-container">
+                <img id="img" src="imgs/saly-3.svg" alt="saly">
+            </div>
+            <div id="error">
+                <span id="error-header">
+                    Error!
+                </span>
+                <p id="error-msg">
+                    <!-- The password must be at least 8 characters long.It must containt lowercase, uppercase and numbers."; -->
+                </p>
+                <button id="error-btn">
+                    Ok!
+                </button>
+            </div>
+            <div class="form">
+                <div class="form-container">
+                    <h1>Register</h1>
+                    <form action="" id="reg-form">
+                        <div class="input">
+                            <label for="first" class="form-lbl">Full Name</label>
+                            <div class="fullname">
+                                <div class="icon-input">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="first" placeholder="First Name" required>
+                                </div>
+                                <div class="icon-input">
+                                    <i class="fas fa-users"></i>
+                                    <input type="text" id="last" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="email">Email</label>
+                            <div class="icon-input">
+                                <i class="fas fa-at"></i>
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="dob">Date of Birth</label>
+                            <div class="icon-input">
+                                <i class="fas fa-baby-carriage"></i>
+                                <input type="date" id="dob" placeholder="Enter your date of birth" required>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="dob">Age</label>
+                            <div class="icon-input">
+                                <i class="fas fa-birthday-cake"></i>
+                                <input type="number" id="age" placeholder="Your age" disabled required>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="gender">Gender</label>
+                            <div class="gender-input">
+                                <div class="gender-group">
+                                    <div class="icon-input">
+                                        <i class="fas fa-mars male"></i>
+                                    </div>
+                                    <label for="male">Male</label>
+                                    <input type="radio" name="genders" id="male" value="male" required>
+                                </div>
+                                <div class="gender-group">
+                                    <div class="icon-input">
+                                        <i class="fas fa-venus female"></i>
+                                    </div>
+                                    <label for="female">Female</label>
+                                    <input type="radio" name="genders" id="female" value="female" required>
+                                </div>
+                                <div class="gender-group">
+                                    <div class="icon-input">
+                                        <i class="fas fa-transgender trans"></i>
+                                    </div>
+                                    <label for="others">Others</label>
+                                    <input type="radio" name="genders" id="others" value="others" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="pass">Password</label>
+                            <div class="icon-input">
+                                <i class="fas fa-key"></i>
+                                <input type="password" id="pass" placeholder="Enter your password" minlength="8" required>
+                                <i class="far fa-eye" id="see-pass" onclick="hideunhidepass()"></i>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="pass">Confirm Password</label>
+                            <div class="icon-input">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="pass2" placeholder="Enter your password again" required>
+                            </div>
+                        </div>
+                        <div class="submit-btn-2">
+                            <button>
+                                <div class="icon-input">
+                                    <p>Register Now!</p>
+                                    <i class="fas fa-door-open"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="or-p">or</p>
+                    <div class="google">
+                        <a href="">
+                            <!-- Icon made by Freepik from www.flaticon.com -->
+                            <img src="imgs/google.png" alt="google">
+                            <p>Sign in with Google</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="index.js"></script>
+
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- icon -->
+    <link rel="icon" href="imgs/HC.svg" type="image/svg+xml">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- poppins semi-bold 600, poppins light 300, rampart one regular 400, besley bold 700, Roboto medium 500-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Besley:wght@700&family=Poppins:wght@300;600&family=Rampart+One&family=Roboto:wght@500&display=swap"
+        rel="stylesheet">
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d1f574ea7a.js" crossorigin="anonymous"></script>
+    <title>HamroCHAT - Login</title>
+</head>
+
+<body>
+    <div id="dropdown" onclick="openclosenav()">
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <img id="dropdown-img" src="imgs/dropdown.png" alt="dropdown menu">
+    </div>
+    <header id="tocollapse">
+        <nav>
+            <div id="brand">
+                <strong>HC</strong>
+            </div>
+            <div id="menu">
+                <ul>
+                    <a href="home.html" class="nav-items">
+                        <li>Home</li>
+                    </a>
+                </ul>
+            </div>
+            <div id="login-reg">
+                <ul>
+                    <a href="register.html"><button id="reg-btn">Register</button></a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="goup">
+            <a href="#login">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="imgs/up.png" alt="TOP">
+            </a>
+        </div>
+        <section id="login">
+            <div class="image-container">
+                <img id="img" src="imgs/saly-2.svg" alt="">
+            </div>
+            <div class="form">
+                <div class="form-container">
+                    <h1>Login</h1>
+                    <form action="">
+                        <div class="input">
+                            <label for="email">Email</label>
+                            <div class="icon-input">
+                                <i class="fas fa-user"></i>
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="pass">Password</label>
+                            <div class="icon-input">
+                                <i class="fas fa-key"></i>
+                                <input type="password" id="pass" placeholder="Enter your password" required>
+                                <i class="far fa-eye" id="see-pass" onclick="hideunhidepass()"></i>
+                            </div>
+                        </div>
+                        <div class="icon-input forgot-pass">
+                            <a href="#">Forgot password?</a>
+                            <i class="far fa-sad-cry"></i>
+                        </div>
+                        <div class="submit-btn">
+                            <button>
+                                <div class="icon-input">
+                                    <p>Login</p>
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="or-p">or</p>
+                    <div class="google">
+                        <a href="">
+                            <!-- Icon made by Freepik from www.flaticon.com -->
+                            <img src="imgs/google.png" alt="google">
+                            <p>Sign in with Google</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="index.js"></script>
+
+    </main>
+</body>
+
+</html>
