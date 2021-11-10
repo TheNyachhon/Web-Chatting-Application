@@ -35,7 +35,7 @@
             </div>
             <div id="menu">
                 <ul>
-                    <a href="help.html" class="nav-items">
+                    <a href="#" class="nav-items" id="help-btn">
                         <li>Help</li>
                     </a>
                 </ul>
@@ -55,6 +55,24 @@
             </a>
         </div>
         <section id="chat">
+            <div id="chat-help">
+                <span id="help-header">
+                    How can we help you?
+                </span>
+                <p id="help-msg">
+                <ul>
+                    <a href="change-credentials.html">
+                        <li>Change Credentials</li>
+                    </a>
+                    <a href="contact.html">
+                        <li>Contact Us</li>
+                    </a>
+                </ul>
+                </p>
+                <button id="close-btn">
+                    Close
+                </button>
+            </div>
             <div id="chat-container">
                 <div id="chat-header">
                     <div id="chat-header-img">
@@ -67,6 +85,7 @@
                     <!-- Green if online, otherwise offline -->
                     <div id="chat-header-onoff">
                         <img src="imgs/online.svg" alt="Active">
+                        <i class="fas fa-video"></i>
                     </div>
                 </div>
                 <div id="message-content">

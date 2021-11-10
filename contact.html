@@ -20,7 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/d1f574ea7a.js" crossorigin="anonymous"></script>
-    <title>HamroCHAT - Home</title>
+    <title>HamroCHAT - Contact Us</title>
 </head>
 
 <body>
@@ -35,8 +35,8 @@
             </div>
             <div id="menu">
                 <ul>
-                    <a href="HamroCHAT-home.html" class="nav-items">
-                        <li>Go Back?</li>
+                    <a href="#" class="nav-items" id="help-btn">
+                        <li>Help</li>
                     </a>
                 </ul>
             </div>
@@ -55,7 +55,43 @@
             </a>
         </div>
         <section id="chat">
-           
+            <div id="chat-help">
+                <span id="help-header">
+                    How can we help you?
+                </span>
+                <p id="help-msg">
+                <ul>
+                    <a href="change-credentials.html">
+                        <li>Change Credentials</li>
+                    </a>
+                    <a href="contact.html">
+                        <li>Contact Us</li>
+                    </a>
+                </ul>
+                </p>
+                <button id="close-btn">
+                    Close
+                </button>
+            </div>
+            <div id="chat-container">
+                <div id="chat-header">
+                    <div id="chat-header-img" class="back-arrrow">
+                        <a href="HamroCHAT-home.html"><i class="fas fa-angle-double-left"></i></a>
+                    </div>
+                    <!-- <div id="user-header-img">
+                        <img src="imgs/me.JPG" alt="user-img">
+                    </div> -->
+                </div>
+                <div id="message-content">
+                    <div id="user-header-name">
+                        Contact Us
+                    </div>
+                    <div id="user-profile-body">
+                        hamrochat@gmail.com<br>s
+                        xyz xyz
+                    </div>
+                </div>
+            </div>
         </section>
         <script src="index.js"></script>
 
