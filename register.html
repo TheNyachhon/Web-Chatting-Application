@@ -72,17 +72,17 @@
             <div class="form">
                 <div class="form-container">
                     <h1>Register</h1>
-                    <form action="" id="reg-form">
+                    <form action="/register" id="reg-form" method="post">
                         <div class="input">
                             <label for="first" class="form-lbl">Full Name</label>
                             <div class="fullname">
                                 <div class="icon-input">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" id="first" placeholder="First Name" required>
+                                    <input type="text" id="first" name="first" placeholder="First Name" required>
                                 </div>
                                 <div class="icon-input">
                                     <i class="fas fa-users"></i>
-                                    <input type="text" id="last" placeholder="Last Name" required>
+                                    <input type="text" id="last" name="last"placeholder="Last Name" required>
                                 </div>
                             </div>
                         </div>
@@ -90,21 +90,21 @@
                             <label for="email">Email</label>
                             <div class="icon-input">
                                 <i class="fas fa-at"></i>
-                                <input type="email" id="email" placeholder="Enter your email" required>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
                             </div>
                         </div>
                         <div class="input">
                             <label for="dob">Date of Birth</label>
                             <div class="icon-input">
                                 <i class="fas fa-baby-carriage"></i>
-                                <input type="date" id="dob" placeholder="Enter your date of birth" required>
+                                <input type="date" id="dob" name="dob"placeholder="Enter your date of birth" required>
                             </div>
                         </div>
                         <div class="input">
                             <label for="dob">Age</label>
                             <div class="icon-input">
                                 <i class="fas fa-birthday-cake"></i>
-                                <input type="number" id="age" placeholder="Your age" disabled required>
+                                <input type="number" id="age" name="age"placeholder="Your age" disabled required>
                             </div>
                         </div>
                         <div class="input">
@@ -145,11 +145,11 @@
                             <label for="pass">Confirm Password</label>
                             <div class="icon-input">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" id="pass2" placeholder="Enter your password again" required>
+                                <input type="password" id="pass2" name="pass2" placeholder="Enter your password again" required>
                             </div>
                         </div>
                         <div class="submit-btn-2">
-                            <button>
+                            <button type="submit">
                                 <div class="icon-input">
                                     <p>Register Now!</p>
                                     <i class="fas fa-door-open"></i>
@@ -168,7 +168,7 @@
                 </div>
             </div>
         </section>
-        <script src="index.js"></script>
+        <script src="validate.js"></script>
 
     </main>
 </body>
