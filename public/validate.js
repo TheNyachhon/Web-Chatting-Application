@@ -142,5 +142,19 @@ if (dob_input) {
         age.value = calc_age;
     });
 }
+// Help button
+var help = document.getElementById("chat-help");
+var closeBtn = document.getElementById("close-btn");
+if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+        help.style.display = 'none';
+    });
+}
+var helpBtn = document.getElementById("help-btn");
+if (helpBtn) {
+    helpBtn.addEventListener("click", function () {
+        help.style.display = 'flex';
+    });
+}
 
 
