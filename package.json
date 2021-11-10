@@ -1,0 +1,31 @@
+{
+  "name": "web-chatting-application",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000W\u0000e\u0000b\u0000-\u0000C\u0000h\u0000a\u0000t\u0000t\u0000i\u0000n\u0000g\u0000-\u0000A\u0000p\u0000p\u0000l\u0000i\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000\r\u0000 \u0000",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheNyachhon/Web-Chatting-Application.git"
+  },
+  "author": "Rujin and Nishit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheNyachhon/Web-Chatting-Application/issues"
+  },
+  "homepage": "https://github.com/TheNyachhon/Web-Chatting-Application#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.7",
+    "mongoose-findorcreate": "^3.0.0",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.1.0"
+  }
+}
