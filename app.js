@@ -1,4 +1,3 @@
-require('dotnev').config()
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
@@ -11,10 +10,15 @@ import PassportLocalMongoose from 'passport-local-mongoose';
 // const findOrCreate = require('mongoose-findorcreate');
 import { profileDetails, RContacts, NContacts } from './database.js';
 import { fileURLToPath } from 'url';
+import path from 'path'
 import {dirname} from 'path';
+import ejs from 'ejs';
 
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -52,12 +56,6 @@ app.get('/contact',(req,res)=>{
     res.render('contact')
 })
 
-app.listen(3000,()=>{
-    console.log("Listening on port 3000");
-})
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const CONNECTION_URL =  "mongodb+srv://Nishit_Shah:Nishit12345@cluster0.bwxjc.mongodb.net/HamroChat?retryWrites=true&w=majority"
 
@@ -91,5 +89,28 @@ app.post("/register", function(req,res){
     })
 
     detailsave.save();
+})
+
+app.post("/login", function(req,res){
+
+    const email = req.body.email
+    profileDetails.findOne({email:email}, function(err, dataFound){
+        if(!err)
+        {
+            console.log(dataFound);
+             const pass = req.body.pass
+             if (dataFound.password === pass)
+             {
+                res.render("HamroCHAT-user-profile")
+            }
+            else{
+                    console.log("INcorrect Password");
+            }
+
+        }
+        else{
+            console.log("User not Found!");
+        }
+    })
 })
 
