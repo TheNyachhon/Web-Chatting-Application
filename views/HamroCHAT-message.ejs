@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+    <title>HamroCHAT - Home</title>
+</head>
+
+<body>
+    <%- include('partials/chatHeader') %>
+    <main>
+        <div id="goup">
+            <a href="#">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="imgs/up.png" alt="TOP">
+            </a>
+        </div>
+        <section id="chat">
+            <%-include('partials/help')%>
+            <div id="chat-container">
+                <div id="chat-header">
+                    <div id="chat-header-img">
+                        <!-- <img src="imgs/nishit.jpg" alt=""> -->
+                        <a href="/HamroCHAT-home"><i class="fas fa-angle-double-left"></i></a>
+                    </div>
+                    <div id="chat-header-name">
+                        Nishit Shah
+                    </div>
+                    <!-- Green if online, otherwise offline -->
+                    <div id="chat-header-onoff">
+                        <img src="imgs/online.svg" alt="Active">
+                        <i class="fas fa-video"></i>
+                    </div>
+                </div>
+                <div id="message-content">
+                    <!-- <div id="message">
+                        <div class="friend">
+                            Hey Rujin! How are you?
+                        </div>
+                        <div class="self">
+                            All good! and you?
+                        </div>
+                        <div class="self">
+                            Did you get vaccinated yet?
+                        </div>
+                        <div class="friend">
+                            Same with me! yup, just recently. you?
+                        </div>
+                        <div class="self">
+                            Done and dusted! 😀
+                        </div>
+                    </div> -->
+                    <iframe src="message.html" id="message-frame" frameborder="0">
+
+                    </iframe>
+                </div>
+                <!-- <div id="write-message">
+                    <input type="text" id="message-to-send" placeholder="write a message . . .">
+                    <span id="write-message-img">
+                        <i class="fa fa-paper-plane"></i>
+                    </span>
+                </div> -->
+                
+            </div>
+            </div>
+        </section>
+        <script src="validate.js"></script>
+    </main>
+</body>
+
+</html>
