@@ -52,10 +52,10 @@ app.get('/contact',(req,res)=>{
     res.render('contact')
 })
 
-
 app.listen(3000,()=>{
     console.log("Listening on port 3000");
 })
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -66,15 +66,6 @@ mongoose.connect(CONNECTION_URL, {useNewUrlParser:true, useUnifiedTopology:true}
        .then(() => app.listen (3000, () => console.log("Server connected to 3000")))
        .catch((error) => console.log(error));
 
-app.get("/", function(req,res)
-{
-    res.sendFile(__dirname + "/home.html")
-})
-
-app.get("/register", function(req,res)
-{
-    res.sendFile(__dirname + "/register.html")
-})
 
 app.post("/register", function(req,res){
 
