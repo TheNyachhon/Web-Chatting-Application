@@ -32,11 +32,11 @@ function openclosenav() {
     if (header.style.display === "block") { //if nav is visible then hide
         header.style.height = "0";
         header.style.display = "none";
-        document.getElementById("dropdown-img").src = "imgs/dropdown.png"
+        document.getElementById("dropdown-img").src = "/imgs/dropdown.png"
     } else { //if nav is not visible , then display
         header.style.height = "100vh";
         header.style.display = "block";
-        document.getElementById("dropdown-img").src = "imgs/close.png"
+        document.getElementById("dropdown-img").src = "/imgs/close.png"
     }
 }
 // Nav closes when clicked on item - only for mobile version
@@ -46,14 +46,14 @@ function screen_resize() {
         header.style.display = "inline";
     } else if (window.innerWidth < 990) {
         header.style.display = "none";
-        document.getElementById("dropdown-img").src = "imgs/dropdown.png"
+        document.getElementById("dropdown-img").src = "/imgs/dropdown.png"
         // nav closes after clicking on a location
         for (let i = 0; i < 3; i++) {
             navitems[i].addEventListener('click', function () {
                 if (header.style.display == "block") { //if nav is visible then hide
                     header.style.height = "0";
                     header.style.display = "none";
-                    document.getElementById("dropdown-img").src = "imgs/dropdown.png"
+                    document.getElementById("dropdown-img").src = "/imgs/dropdown.png"
                 }
             });
         }
