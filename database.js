@@ -8,6 +8,8 @@ const userDetails = mongoose.Schema ({
     email:String,
     Age:Number,
     DOB: Date,
+    isOnline:Boolean,
+    contacts:Array,
     googleId:String,
     password:String,
 

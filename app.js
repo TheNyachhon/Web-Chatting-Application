@@ -85,6 +85,7 @@ app.post("/register", function(req,res){
           DOB:dob,
           gender:gender,
           password:password,
+          isOnline:false
 
     })
 
@@ -101,10 +102,10 @@ app.post("/login", function(req,res){
              const pass = req.body.pass
              if (dataFound.password === pass)
              {
-                res.render("HamroCHAT-user-profile")
+                res.render("HamroChat-home")
             }
             else{
-                    console.log("INcorrect Password");
+                    console.log("Incorrect Password");
             }
 
         }
