@@ -104,8 +104,7 @@ app.post("/register", function(req,res){
           DOB:dob,
           gender:gender,
           password:password,
-          isOnline:false,
-          contacts:''
+          isOnline:false
 
     })
 
