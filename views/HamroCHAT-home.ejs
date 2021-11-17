@@ -34,12 +34,12 @@
                         </div>
                         <div id="chat-content">
                             <div id="chat-search">
-                                <form action="">
+                                <form action="/HamroCHAT-home/<%=currentUser._id%>">
                                     <div id="chat-search-image">
                                         <i class="fas fa-search"></i>
                                     </div>
-                                    <input id="chat-search-bar" type="text"
-                                        placeholder="Select or search user to start chatting">
+                                    <input id="chat-search-bar" type="text" name="email" placeholder="Enter email ID to add user!">
+                                        <button id="add-user">Add User</button>
                                 </form>
                             </div>
                             <!-- firends to chat to -->
