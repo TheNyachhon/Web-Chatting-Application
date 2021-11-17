@@ -122,6 +122,15 @@ if (errorBtn) {
         error.style.display = 'none';
     });
 }
+//LOGIN FORM CLOSE
+const loginError = document.querySelector("#login-error");
+var loginErrorBtn = document.getElementById("login-error-btn");
+if (loginErrorBtn) {
+    loginErrorBtn.addEventListener("click", function () {
+        loginError.style.display = 'none';
+        console.log(loginError)
+    });
+}
 // Assigning Age after inputting DOB
 var dob_input = document.getElementById("dob");
 var age = document.getElementById("age");

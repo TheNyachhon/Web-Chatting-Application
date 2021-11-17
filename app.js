@@ -31,7 +31,9 @@ app.get('/',(req,res)=>{
     res.render('home')
 })
 app.get('/login',(req,res)=>{
-    res.render('login');
+    const error = req.query
+    console.log(error)
+    res.render('login',{error});
 });
 app.get('/register',(req,res)=>{
     res.render('register');
@@ -109,28 +111,28 @@ app.post("/register", function(req,res){
     })
 
     detailsave.save();
+    res.redirect('login?registration=successful')
 })
 
-app.post("/login", (req,res)=>{
-
+app.post("/login", (req, res) => {
     const email = req.body.email
-    profileDetails.findOne({email:email}, (err, data)=>{
-        if(!err)
-        {
-             const pass = req.body.pass
-             if (data.password === pass)
-             {
-                console.log("Logging in User")
+    profileDetails.findOne({ email: email })
+        .then(data => {
+            // console.log(data);
+            const pass = req.body.pass
+            if (data.password === pass) {
                 profileDetails.updateOne({ _id: data._id }, { $set: { isOnline: 'true' } })
+                console.log("User logged in. User is now online")
                 res.redirect("HamroChat-home/" + data._id)
             }
-            else{
+            else {
+                res.redirect("login?login=invalid")
                 console.log("Incorrect Password");
             }
-        }
-        else{
+        })
+        .catch(err => {
+            res.redirect("login?login=invalid")
             console.log("User not Found!");
-        }
-    })
-})
-
+            console.log(err)
+        })
+});

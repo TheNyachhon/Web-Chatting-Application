@@ -449,8 +449,9 @@ input:focus{
 .google a:active{
     background-color: #4285F4EA;
 }
+/* LOGIN ERROR AND */
 /* REGISTRATION FORM */
-#error{
+#error,#login-error{
     position:fixed;
     top:4em;
     width:50%;
@@ -465,6 +466,11 @@ input:focus{
     display: none;
     transition:all 1s;
 }
+#login-error{
+    display: flex;
+    left:50%;
+    transform: translate(-50%, 0);
+}
 #error-header{
     text-align: center;
     font-size:1.5em;
@@ -478,7 +484,13 @@ input:focus{
     font-size:0.9em;
     text-align: left;
 }
-#error-btn{
+#login-msg{
+    font-family: poppins;
+    font-weight: bold;
+    color:white;
+    margin-bottom:1em;
+}
+#error-btn,#login-error-btn{
     background-color: rgb(80, 76, 76);
     font-size:1.2em;
     color:white;
@@ -486,7 +498,7 @@ input:focus{
     border:none;
     border-radius: 1em;
 }
-#error-btn:active{
+#error-btn:active,#login-error-btn:active{
     transform:translateY(0.2em);
 }
 .fullname{
@@ -894,7 +906,7 @@ iframe{
     .gender-input label{
         font-size: 1.2em;
     }
-    #error{
+    #error,#login-error{
         width:70%;
     }
 }
@@ -940,7 +952,7 @@ iframe{
     .gender-group .icon-input{
        display: none;;
     }
-    #error{
+    #error,#login-error{
         width:80%;
     }
 }
@@ -1083,7 +1095,7 @@ iframe{
         width: 1em; 
         margin-left: 0.5em;
     }
-    #error{
+    #error,#login-error{
         width:30%;
     }
     #chat-header-img i{

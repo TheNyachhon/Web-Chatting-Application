@@ -7,6 +7,17 @@
 </head>
 
 <body>
+    <%if(error.login == 'invalid'){%>
+    <div id="login-error">
+        <span id="error-header">
+            Error!
+        </span>
+        <p id="login-msg">Email not found or Password incorrect!</p>
+        <button id="login-error-btn">
+            Ok!
+        </button>
+    </div>
+    <%}%>
     <div id="dropdown" onclick="openclosenav()">
         <!-- Icon made by Freepik from www.flaticon.com -->
         <img id="dropdown-img" src="/imgs/dropdown.png" alt="dropdown menu">
