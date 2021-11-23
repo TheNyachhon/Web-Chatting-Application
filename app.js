@@ -124,7 +124,7 @@ app.get('/home/:id', async (req, res) => {
 })
 
 
-const CONNECTION_URL = "mongodb+srv://Nishit_Shah:Nishit12345@cluster0.bwxjc.mongodb.net/HamroChat?retryWrites=true&w=majority"
+const CONNECTION_URL = "mongodb+srv://Nishit_Shah:"+process.env.pass+"@cluster0.bwxjc.mongodb.net/HamroChat?retryWrites=true&w=majority"
 
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
