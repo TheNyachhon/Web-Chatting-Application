@@ -26,6 +26,54 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
 
+
+// SOCKET.IO
+import { createServer } from "http";
+import { Server } from "socket.io";
+const server = createServer(app);
+const io = new Server(server)
+//Run when client connects
+io.on('connection',socket=>{
+    console.log("new WS connection");
+
+    //Welcome current user
+    socket.emit('message','Welcome to the chat app!');
+
+    //Broadcast when a user connects
+    //broadcasts to everyone except the use thats connecting
+    socket.broadcast.emit('message','A user has joined the chat');
+
+    //Runs when client disconnects
+    socket.on('disconnect',()=>{
+        io.emit('message','A user has left the chat')
+    });
+
+    //Listen for chat message
+    socket.on('chatMessage',msg=>{
+        io.emit('message',msg)
+    });
+})
+
+server.listen(3000, () => {
+    console.log("Listening on port 3000");
+})
+
+// Connecting database
+const CONNECTION_URL = "mongodb+srv://Nishit_Shah:" + process.env.pass + "@cluster0.bwxjc.mongodb.net/HamroChat?retryWrites=true&w=majority"
+
+mongoose.connect(CONNECTION_URL)
+    .then(() => {
+        console.log("Connection open!!");
+    })
+    .catch(err => {
+        console.log("Connection failed!: ");
+        console.log(err);
+    })
+// mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => app.listen(3000, () => console.log("Server connected to 3000")))
+//     .catch((error) => console.log(error));
+
+
 //Redirection
 app.get('/', (req, res) => {
     res.render('home')
@@ -47,7 +95,7 @@ app.get('/HamroChat-home/:id', async (req, res) => {
     const currentUser = await profileDetails.findOne({ _id: id })
 
     // if ((Object.keys(req.query).length == 0) == true) {
-    if(currentUser.isOnline != true || req.query.email==null){
+    if (currentUser.isOnline != true || req.query.email == null) {
         await profileDetails.findOneAndUpdate({ _id: id }, { isOnline: true })
         // console.log("data is")
         // console.log(allUsers)
@@ -74,26 +122,27 @@ app.get('/HamroChat-home/:id', async (req, res) => {
                     }
                 }
                 console.log(exist)
-                await profileDetails.findOneAndUpdate({ _id: data._id }, { $push: { contacts: {email: currentUser.email} }})
+                await profileDetails.findOneAndUpdate({ _id: data._id }, { $push: { contacts: { email: currentUser.email } } })
                 if (exist != true) {
                     //pushing email id to current user's contact
-                    await profileDetails.findOneAndUpdate({ _id: id }, { $push: { contacts: {email: emailToAdd} }})
+                    await profileDetails.findOneAndUpdate({ _id: id }, { $push: { contacts: { email: emailToAdd } } })
                         .then((d) => {
                             console.log("Contact added successfully")
                             // res.redirect("HamroChat-home/" + id)
-                            res.redirect('/HamroChat-home/'+currentUser._id)
+                            res.redirect('/HamroChat-home/' + currentUser._id)
                         })
                         .catch(e => {
                             console.log("Contact not added. Error!")
                         })
-                }else{
+                } else {
                     console.log("contact already exists")
-                    res.redirect('/HamroChat-home/'+currentUser._id)
+                    res.redirect('/HamroChat-home/' + currentUser._id)
                 }
             })
             .catch(e => {
                 console.log("email not found")
-                console.log(e)
+                res.redirect('/HamroChat-home/' + currentUser._id)
+                // console.log(e)
             })
     }
 })
@@ -107,7 +156,7 @@ app.get('/HamroChat-message/:id/:id2', async (req, res) => {
     const { id, id2 } = req.params
     const contactUser = await profileDetails.findById({ _id: id2 })
     const currentUser = await profileDetails.findOne({ _id: id })
-    res.render('HamroChat-message', { currentUser })
+    res.render('HamroChat-message',{ currentUser, contactUser })
 })
 app.get('/change-credentials', (req, res) => {
     res.render('change-credentials')
@@ -120,16 +169,11 @@ app.get('/home/:id', async (req, res) => {
     const { id } = req.params
     console.log(id)
     await profileDetails.findOneAndUpdate({ _id: id }, { isOnline: false })
-    res.render("home")
+        .then(d => {
+            res.redirect('/home?logout=successful')
+        })
+    // res.render("home")
 })
-
-
-const CONNECTION_URL = "mongodb+srv://Nishit_Shah:"+process.env.pass+"@cluster0.bwxjc.mongodb.net/HamroChat?retryWrites=true&w=majority"
-
-
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen(3000, () => console.log("Server connected to 3000")))
-    .catch((error) => console.log(error));
 
 
 app.post("/register", function (req, res) {
@@ -180,3 +224,15 @@ app.post("/login", (req, res) => {
             console.log(err)
         })
 });
+
+
+
+// io.on('connection',socket =>{
+//     socket.on('new-user-joined',name=>{
+//         user[socket.id] = name;
+//         socket.broadcast.emit('user-joined');
+//     })
+//     socket.on('send',message=>{
+//         socket.broadcast.emit('receive',{message:message,name:user[socket.id]})
+//     })
+// })
