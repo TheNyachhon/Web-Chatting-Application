@@ -3,68 +3,83 @@
 
 <head>
     <%- include('partials/header') %>
-    <title>HamroCHAT - Home</title>
+        <title>HamroCHAT - Home</title>
 </head>
 
 <body>
     <%- include('partials/chatHeader') %>
-    <main>
-        <div id="goup">
-            <a href="#">
-                <!-- Icon made by Pixel perfect from www.flaticon.com -->
-                <img src="/imgs/up.png" alt="TOP">
-            </a>
-        </div>
-        <section id="chat">
-            <%-include('partials/help')%>
-            <div id="chat-container">
-                <div id="chat-header">
-                    <div id="chat-header-img">
-                        <!-- <img src="imgs/nishit.jpg" alt=""> -->
-                        <a href="/HamroCHAT-home"><i class="fas fa-angle-double-left"></i></a>
-                    </div>
-                    <div id="chat-header-name">
-                        Nishit Shah
-                    </div>
-                    <!-- Green if online, otherwise offline -->
-                    <div id="chat-header-onoff">
-                        <img src="/imgs/online.svg" alt="Active">
-                        <i class="fas fa-video"></i>
-                    </div>
-                </div>
-                <div id="message-content">
-                    <!-- <div id="message">
-                        <div class="friend">
-                            Hey Rujin! How are you?
+        <main>
+            <div id="goup">
+                <a href="#">
+                    <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                    <img src="/imgs/up.png" alt="TOP">
+                </a>
+            </div>
+            <section id="chat">
+                <%- include('partials/help')%>
+                    <div id="chat-container">
+                        <div id="chat-header">
+                            <div id="chat-header-img">
+                                <!-- <img src="imgs/nishit.jpg" alt=""> -->
+                                <a href="/HamroCHAT-home/<%=currentUser._id%>"><i
+                                        class="fas fa-angle-double-left"></i></a>
+                            </div>
+                            <div id="chat-header-name">
+                                <%=contactUser.firstName+' '+contactUser.lastName%>
+                            </div>
+                            <!-- Green if online, otherwise offline -->
+                            <div id="chat-header-onoff">
+                                <%if(contactUser.isOnline == true){%>
+                                    <img src="/imgs/online.svg" alt="Active">
+                                <%}else{%>
+                                    <img src="/imgs/offline.svg"class="status-img" alt="Active-img">
+                                <%}%>
+                                <i class="fas fa-video"></i></a>
+                            </div>
                         </div>
-                        <div class="self">
-                            All good! and you?
-                        </div>
-                        <div class="self">
-                            Did you get vaccinated yet?
-                        </div>
-                        <div class="friend">
-                            Same with me! yup, just recently. you?
-                        </div>
-                        <div class="self">
-                            Done and dusted! 😀
-                        </div>
-                    </div> -->
-                    <iframe src="message.html" id="message-frame" frameborder="0">
+                        <div id="message-content">
+                            <div class="message receiver">
+                                <div class="friend">
+                                    Hey Rujin! How are you?
+                                </div>
+                            </div>
+                            <div class="message sender">
+                                <div class="self">
+                                    All good! and you?
+                                </div>
+                            </div>
+                            <div class="message sender">
+                                <div class="self">
+                                    Did you get vaccinated yet?
+                                </div>
+                            </div>
+                            <div class="message receiver">
+                                <div class="friend">
+                                    Same with me! yup, just recently. you?
+                                </div>
+                            </div>
+                            <div class="message sender">
+                                <div class="self">
+                                    Done and dusted! 😀
+                                </div>  
+                            </div>    
+                    <!-- <iframe src="message.html" id="message-frame" frameborder="0">
 
-                    </iframe>
-                </div>
-                <!-- <div id="write-message">
-                    <input type="text" id="message-to-send" placeholder="write a message . . .">
-                    <span id="write-message-img">
-                        <i class="fa fa-paper-plane"></i>
-                    </span>
-                </div> -->
-                
-            </div>
-            </div>
-        </section>
+                    </iframe> -->
+                        </div>
+                        <div id="send-message">
+                            <form action="" id="send-message-form">
+                                <input type="text" name="message-to-send" id="message-to-send" placeholder="write a message . . .">
+                                <button id="send-message-btn" type="submit">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+            </section>
         <script src="/validate.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/client.js"></script>
     </main>
 </body>
 

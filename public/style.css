@@ -7,6 +7,7 @@ html{
 }
 button{
     outline: none;
+    cursor: pointer;
 }
 a{
     text-decoration: none;
@@ -31,12 +32,12 @@ a{
     position:fixed;
     width:100%;
     margin:1em 1em;
-    cursor: pointer;
     z-index:2;
 }
 #dropdown img{
     width:1.8em;
     object-fit: cover;
+    cursor: pointer;
 }
 header{
     display: none;
@@ -773,66 +774,72 @@ input:focus{
 }
 /* Messaging section */
 #message-content{
-    min-height: 40vh;
-    height: 100%;
-    padding:0.5em;
+    height: 45vh;
+    padding:1em;
     margin:0 0 1em; /*margin bottom*/
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-iframe{
+.message{
     width: 100%;
-    height: 50vh;
-    border:1px blue solid;
+    display: flex;
 }
-#message{
-    min-height: 80%;
-    padding: 0.5em;
-    padding-bottom:5em;
+.receiver{
+    justify-content: flex-start;
+}
+.sender{
+    justify-content: flex-end;
+}
+.friend,.self{
+    backdrop-filter: blur( 7.0px );
+    -webkit-backdrop-filter: blur( 7.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width:auto;
+    max-width: 70%;
+    padding:1em;
+    margin:0.5em 0;
+    word-wrap: break-word;
 }
 .friend{
     background: rgba(0, 163, 255, 0.5);
-    backdrop-filter: blur( 7.0px );
-    -webkit-backdrop-filter: blur( 7.0px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    width:60%;
-    padding:1em;
-    margin:0.5em 0;
-    float: left;
 }
 .self{
     background: rgba( 255, 255, 255, 0.40 );
-    backdrop-filter: blur( 7.0px );
-    -webkit-backdrop-filter: blur( 7.0px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    width:60%;
-    padding:1em;
-    margin:0.5em 0;
-    float: right;
 }
-#write-message{
-    min-height: 20%;
+#send-message{
+    min-height: 10vh;
     background-color: #FFFFFFAA;
     padding:0.5em;
     border-radius: 0 0 0.5em 0.5em;
     display: flex;
     justify-content: space-between;
     /* delete below line for original */
-    position: fixed;
+    /* position: fixed;
     bottom:0;
-    width:100%;
+    width:100%; */
 }
-#write-message input{
+#send-message-form{
+    display: inherit;
+    width: 100%;
+}
+#message-to-send{
+    width:100%;
+    height: 100%;
     margin:0;
     border:none;
+    font-size:1em;
 }
-#write-message-img{
+#send-message-btn{
     color: #1481D0;
-    margin-right:1em;
-    cursor: pointer;
+    background-color: transparent;
+    border:none;
+    font-size:2em;
+}
+#send-message-btn:active{
+    transform: translateY(0.1em);
 }
 /* User profile */
 .back-arrrow{
