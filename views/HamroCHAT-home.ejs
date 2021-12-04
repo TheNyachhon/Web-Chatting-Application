@@ -28,7 +28,7 @@
                                 <%=currentUser.firstName+" "+currentUser.lastName%>
                     </div>
                     <!-- Green if online, otherwise offline -->
-                    <div id="chat-header-onoff">
+                    <div id=" chat-header-onoff">
                                     <img src="/imgs/online.svg" alt="Active">
                             </div>
                         </div>
@@ -38,15 +38,16 @@
                                     <div id="chat-search-image">
                                         <i class="fas fa-search"></i>
                                     </div>
-                                    <input id="chat-search-bar" type="text" name="email" placeholder="Enter email ID to add user!">
-                                        <button id="add-user">Add User</button>
+                                    <input id="chat-search-bar" type="text" name="email"
+                                        placeholder="Enter email ID to add user!">
+                                    <button id="add-user">Add User</button>
                                 </form>
                             </div>
                             <!-- firends to chat to -->
                             <div id="chat-users">
                                 <% const contacts=currentUser.contacts%>
-                                    <%=console.log("User's contacts:")%>
-                                        <%=console.log(contacts)%>
+                                    <%=//console.log("User's contacts:")%>
+                                        <%=//console.log(contacts)%>
                                             <%for(let x of contacts){%>
                                                 <!-- Extracting contact info from database -->
                                                 <%const data=allUsers.filter(d=>{return d.email==x.email})%>
