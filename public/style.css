@@ -780,7 +780,7 @@ input:focus{
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .message{
     width: 100%;
