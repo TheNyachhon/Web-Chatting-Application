@@ -39,7 +39,7 @@ import { Server } from "socket.io";
 const server = createServer(app);
 const io = new Server(server)
 
-const botName = 'HamroChat bot'
+const botName = 'HamroCHAT bot'
 
 //Run when client connects
 io.on('connection', socket => {
@@ -161,13 +161,13 @@ app.get('/auth/google/profile', passport.authenticate('google', {failureRedirect
 async function(req,res){
     const currentUser = await profileDetails.findOne({_id:id})
     console.log(currentUser);
-    res.redirect("/HamroChat-home/"+currentUser.id)
+    res.redirect("/HamroCHAT-home/"+currentUser.id)
 });
     
 app.get('/home', (req, res) => {
     res.render('home');
 });
-app.get('/HamroChat-home/:id', async (req, res) => {
+app.get('/HamroCHAT-home/:id', async (req, res) => {
     const { id } = req.params
     const allUsers = await profileDetails.find({})
     const currentUser = await profileDetails.findOne({ _id: id })
@@ -179,7 +179,7 @@ app.get('/HamroChat-home/:id', async (req, res) => {
         // console.log(allUsers)
         // console.log(currentUser)
         console.log("User logged in")
-        res.render('HamroChat-home', { currentUser, allUsers });
+        res.render('HamroCHAT-home', { currentUser, allUsers });
     } else {
         const emailToAdd = req.query.email //email retrieved from form
         console.log("The following email is to be added:")
@@ -207,25 +207,25 @@ app.get('/HamroChat-home/:id', async (req, res) => {
                         .then((d) => {
                             console.log("Contact added successfully")
                             // res.redirect("HamroChat-home/" + id)
-                            res.redirect('/HamroChat-home/' + currentUser._id)
+                            res.redirect('/HamroCHAT-home/' + currentUser._id)
                         })
                         .catch(e => {
                             console.log("Contact not added. Error!")
                         })
                 } else {
                     console.log("contact already exists")
-                    res.redirect('/HamroChat-home/' + currentUser._id)
+                    res.redirect('/HamroCHAT-home/' + currentUser._id)
                 }
             })
             .catch(e => {
                 console.log("email not found")
-                res.redirect('/HamroChat-home/' + currentUser._id)
+                res.redirect('/HamroCHAT-home/' + currentUser._id)
                 // console.log(e)
             })
     }
 });
 
-app.get('/HamroChat-home/:id', function(req,res){
+app.get('/HamroCHAT-home/:id', function(req,res){
     const { id } = req.params;
     
     if(req.isAuthenticated())
@@ -237,17 +237,17 @@ app.get('/HamroChat-home/:id', function(req,res){
         res.redirect("/login")
     }
 })
-app.get('/HamroChat-user-profile/:id/:id2', async (req, res) => {
+app.get('/HamroCHAT-user-profile/:id/:id2', async (req, res) => {
     const { id, id2 } = req.params
     const contactUser = await profileDetails.findById({ _id: id2 })
     const currentUser = await profileDetails.findOne({ _id: id })
-    res.render('HamroChat-user-profile', { currentUser, contactUser })
+    res.render('HamroCHAT-user-profile', { currentUser, contactUser })
 })
-app.get('/HamroChat-message/:id/:id2', async (req, res) => {
+app.get('/HamroCHAT-message/:id/:id2', async (req, res) => {
     const { id, id2 } = req.params
     const contactUser = await profileDetails.findById({ _id: id2 })
     const currentUser = await profileDetails.findOne({ _id: id })
-    res.render('HamroChat-message', { currentUser, contactUser })
+    res.render('HamroCHAT-message', { currentUser, contactUser })
 })
 //Changing credentials
 app.get('/change-credentials/:id',async (req, res) => {
@@ -333,7 +333,7 @@ app.post("/login", (req, res) => {
             if (data.password === pass) {
                 profileDetails.updateOne({ _id: data._id }, { $set: { isOnline: 'true' } })
                 console.log("User logged in. User is now online")
-                res.redirect("HamroChat-home/" + data._id)
+                res.redirect("HamroCHAT-home/" + data._id)
             }
             else {
                 res.redirect("login?login=invalid")
