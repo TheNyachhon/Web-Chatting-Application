@@ -246,11 +246,28 @@ app.get('/HamroChat-message/:id/:id2', async (req, res) => {
     const currentUser = await profileDetails.findOne({ _id: id })
     res.render('HamroChat-message', { currentUser, contactUser })
 })
-app.get('/change-credentials', (req, res) => {
-    res.render('change-credentials')
+//Changing credentials
+app.get('/change-credentials/:id',async (req, res) => {
+    const { id } = req.params
+    const currentUser = await profileDetails.findOne({ _id: id })
+    res.render('change-credentials',{currentUser})
 })
-app.get('/contact', (req, res) => {
-    res.render('contact')
+app.post('/change-credentials/:id',async (req, res) => {
+    const { id } = req.params
+    const newPass = req.body.pass2
+    console.log('here')
+    await profileDetails.findOneAndUpdate({ _id: id },{password:newPass})
+    await profileDetails.findOneAndUpdate({ _id: id }, { isOnline: false })
+        .then(d => {
+            res.redirect('/home?passwordChange=successful')
+        })
+    // res.render('change-credentials',{currentUser})
+})
+app.get('/contact/:id', async(req, res) => {
+    const { id } = req.params
+    const currentUser = await profileDetails.findOne({ _id: id })
+
+    res.render('contact',{currentUser})
 })
 //logout
 app.get('/home/:id', async (req, res) => {
