@@ -158,9 +158,12 @@ app.get('/register', (req, res) => {
 app.get('/auth/google', passport.authenticate('google',{scope:['profile']}));
 
 app.get('/auth/google/profile', passport.authenticate('google', {failureRedirect:"/login"}),
-function(req,res){
-    res.redirect("/HamroChat-home/:id");
-})
+async function(req,res){
+    const currentUser = await profileDetails.findOne({_id:id})
+    console.log(currentUser);
+    res.redirect("/HamroChat-home/"+currentUser.id)
+});
+    
 app.get('/home', (req, res) => {
     res.render('home');
 });
@@ -325,6 +328,7 @@ app.post("/login", (req, res) => {
             console.log("User not Found!");
             console.log(err)
         })
+    });
         // const user = new profileDetails({
         //     email:req.body.email,
         //     password: req.body.pass
@@ -352,7 +356,5 @@ app.post("/login", (req, res) => {
         //                 })
         //         })
         //     }
-        // }
-    });
-        
-                        
+        // 
+
