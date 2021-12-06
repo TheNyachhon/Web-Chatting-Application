@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div id="message-content">
-                            <div class="message receiver">
+                            <!-- <div class="message receiver">
                                 <div class="friend">
                                     Hey Rujin! How are you?
                                 </div>
@@ -62,14 +62,14 @@
                                 <div class="self">
                                     Done and dusted! 😀
                                 </div>  
-                            </div>    
+                            </div>     -->
                     <!-- <iframe src="message.html" id="message-frame" frameborder="0">
 
                     </iframe> -->
                         </div>
                         <div id="send-message">
                             <form action="" id="send-message-form">
-                                <input type="text" name="message-to-send" id="message-to-send" placeholder="write a message . . .">
+                                <input type="text" name="message-to-send" id="message-to-send" placeholder="write a message . . ." required>
                                 <button id="send-message-btn" type="submit">
                                     <i class="fa fa-paper-plane"></i>
                                 </button>
@@ -77,9 +77,14 @@
                         </div>
                     </div>
             </section>
-        <script src="/validate.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/client.js"></script>
+            <script src="/validate.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/client.js"></script>
+            <script>
+                let id1='<%=currentUser._id%>'
+                let id2='<%=contactUser._id%>'
+                socket.emit('createRoom', {id1,id2});
+            </script>
     </main>
 </body>
 

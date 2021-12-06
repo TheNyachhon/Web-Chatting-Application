@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import express from 'express';
+import express, { query } from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import passport from 'passport';
@@ -13,6 +13,7 @@ import { fileURLToPath } from 'url';
 import path from 'path'
 import { dirname } from 'path';
 import ejs from 'ejs';
+import { formatMessage } from './messages.js';
 
 const app = express();
 
@@ -32,26 +33,89 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 const server = createServer(app);
 const io = new Server(server)
+
+const botName = 'HamroChat bot'
+
 //Run when client connects
-io.on('connection',socket=>{
+io.on('connection', socket => {
     console.log("new WS connection");
+    // listening for createRoom
+    socket.on('createRoom', ({ id1, id2 }) => {
+        let sum1 = 0     //sum for current user
+        let sum2 = 0    //sum for contact user 
+        for (let x of id1) {
+            let num = parseInt(x)
+            if (num) {
+                sum1 += num
+            }
+        }
+        for (let x of id2) {
+            let num = parseInt(x)
+            if (num) {
+                sum2 += num
+            }
+        }
+        console.log(sum1)
+        console.log(sum2)
+        let room
+        if (sum1 > sum2) {
+            room = id1 + id2
+        } else {
+            room = id2 + id1
+        }
+        console.log('room is ' + room)
 
-    //Welcome current user
-    socket.emit('message','Welcome to the chat app!');
+        //joining room
+        socket.join(room)
 
-    //Broadcast when a user connects
-    //broadcasts to everyone except the use thats connecting
-    socket.broadcast.emit('message','A user has joined the chat');
+        //Welcome current user
+        socket.emit('message', formatMessage(botName, 'Welcome to the chat app!'));
 
-    //Runs when client disconnects
-    socket.on('disconnect',()=>{
-        io.emit('message','A user has left the chat')
-    });
+        //Broadcast when a user connects
+        //broadcasts to everyone except the use thats connecting
+        socket.broadcast
+            .to(room)
+            .emit('message', formatMessage(botName, 'user has joined the chat'));
+        //Listen for chat message
+        socket.on('chatMessage', msg => {
+            io.to(room).emit('message', formatMessage('User', msg))
+        });
 
-    //Listen for chat message
-    socket.on('chatMessage',msg=>{
-        io.emit('message',msg)
-    });
+        //Runs when client disconnects
+        socket.on('disconnect', () => {
+            io.to(room).emit('message', formatMessage(botName, 'A user has left the chat'))
+        });
+    })
+
+
+
+    // socket.on('createRoom', id => {
+    //     console.log('here')
+    //     console.log(id)
+    //     let sum1 = 0, sum2 = 0;
+    //     let next = false;
+    //     for (let x of id) {
+    //         if (x == ',') {
+    //             next = true;
+    //         } else {
+    //             if (next == false) {
+    //                 let num = parseInt(x)
+    //                 if (num) {
+    //                     sum1 = sum1 + num
+    //                 }
+    //             } else {
+    //                 let num = parseInt(x)
+    //                 if (num) {
+    //                     sum2 = sum2 + num
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     console.log(sum1)
+    //     console.log(sum2)
+
+    // })
+
 })
 
 server.listen(3000, () => {
@@ -156,7 +220,7 @@ app.get('/HamroChat-message/:id/:id2', async (req, res) => {
     const { id, id2 } = req.params
     const contactUser = await profileDetails.findById({ _id: id2 })
     const currentUser = await profileDetails.findOne({ _id: id })
-    res.render('HamroChat-message',{ currentUser, contactUser })
+    res.render('HamroChat-message', { currentUser, contactUser })
 })
 app.get('/change-credentials', (req, res) => {
     res.render('change-credentials')

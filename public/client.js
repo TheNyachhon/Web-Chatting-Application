@@ -33,7 +33,7 @@ function outputMessage(message) {
     messageToSend.classList.add('message', 'sender');
     const sender = document.createElement('div')
     sender.classList.add('self');
-    sender.innerText = message;
+    sender.innerText = message.text;
     messageToSend.appendChild(sender)
     console.log(messageToSend)
     messageContainer.append(messageToSend)
