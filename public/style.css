@@ -626,7 +626,8 @@ input:focus{
     justify-content: space-around;
 }
 #chat-header{
-    min-height: 15vh;
+    /* min-height: 15vh; */
+    height: auto;
     border-radius: 1em 1em 0 0;
     padding:1em;
     display: flex;
@@ -802,12 +803,20 @@ input:focus{
     padding:1em;
     margin:0.5em 0;
     word-wrap: break-word;
+    padding-bottom:0;
 }
 .friend{
     background: rgba(0, 163, 255, 0.5);
+    text-align: left;
+}
+.message-time{
+    font-size:0.8em;
+    color:gray;
+    margin-bottom:0.5em;
 }
 .self{
     background: rgba( 255, 255, 255, 0.40 );
+    text-align: right;
 }
 #send-message{
     min-height: 10vh;

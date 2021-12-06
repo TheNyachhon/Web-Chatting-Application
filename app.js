@@ -80,47 +80,17 @@ io.on('connection', socket => {
         //broadcasts to everyone except the use thats connecting
         socket.broadcast
             .to(room)
-            .emit('message', formatMessage(botName, 'user has joined the chat'));
+            .emit('message', formatMessage(botName, 'User has joined the chat!'));
         //Listen for chat message
         socket.on('chatMessage', msg => {
-            io.to(room).emit('message', formatMessage('User', msg))
+            socket.to(room).emit('message', formatMessage(id1, msg))
         });
 
         //Runs when client disconnects
         socket.on('disconnect', () => {
-            io.to(room).emit('message', formatMessage(botName, 'A user has left the chat'))
+            io.to(room).emit('message', formatMessage(botName, 'User has left the chat!'))
         });
     })
-
-
-
-    // socket.on('createRoom', id => {
-    //     console.log('here')
-    //     console.log(id)
-    //     let sum1 = 0, sum2 = 0;
-    //     let next = false;
-    //     for (let x of id) {
-    //         if (x == ',') {
-    //             next = true;
-    //         } else {
-    //             if (next == false) {
-    //                 let num = parseInt(x)
-    //                 if (num) {
-    //                     sum1 = sum1 + num
-    //                 }
-    //             } else {
-    //                 let num = parseInt(x)
-    //                 if (num) {
-    //                     sum2 = sum2 + num
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     console.log(sum1)
-    //     console.log(sum2)
-
-    // })
-
 })
 
 server.listen(3000, () => {

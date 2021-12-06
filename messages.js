@@ -1,9 +1,9 @@
 import moment from 'moment';
-function formatmessage(username,text){
+function formatmessage(userid,text){
     return{
-        username,
+        userid,
         text,
-        time:moment().format('h:mm a')
+        time:moment().format('hh:mm a')
     }
 }
 
