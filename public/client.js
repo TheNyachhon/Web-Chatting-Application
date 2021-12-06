@@ -10,13 +10,14 @@ socket.on('message', message => {
     outputMessage(message)
     scrollToBottom()
 })
-function scrollToBottom() {
-    //Scroll down after hitting send
-    messageContainer.scrollTop = messageContainer.scrollHeight
-
+function clearMessage() {
     //Clearing input
     messageInput.value = '';
     messageInput.focus();
+}
+function scrollToBottom() {
+    //Scroll down after hitting send
+    messageContainer.scrollTop = messageContainer.scrollHeight
 }
 //Checking for form submission
 form.addEventListener('submit', (e) => {
@@ -45,6 +46,7 @@ form.addEventListener('submit', (e) => {
     messageContainer.append(messageToSend)
     // 
     scrollToBottom()
+    clearMessage()
     //Emitting message to server
     socket.emit('chatMessage', message);
 })
