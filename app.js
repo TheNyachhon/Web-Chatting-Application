@@ -5,9 +5,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import session from 'express-session';
-import PassportLocalMongoose from 'passport-local-mongoose';
-// const GoogleStrategy = require ('passport-google-oauth20').Strategy;
-// const findOrCreate = require('mongoose-findorcreate');
+import GStrategy from 'passport-google-oauth20';
 import { profileDetails } from './database.js';
 import { fileURLToPath } from 'url';
 import path from 'path'
@@ -15,6 +13,7 @@ import { dirname } from 'path';
 import ejs from 'ejs';
 import { formatMessage } from './messages.js';
 
+var GoogleStrategy = GStrategy.Strategy;
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -26,6 +25,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 //view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
+
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized:false
+}));
 
 
 // SOCKET.IO
@@ -121,6 +126,8 @@ io.on('connection', socket => {
 server.listen(3000, () => {
     console.log("Listening on port 3000");
 })
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Connecting database
 const CONNECTION_URL = "mongodb+srv://Nishit_Shah:" + process.env.pass + "@cluster0.bwxjc.mongodb.net/HamroChat?retryWrites=true&w=majority"
@@ -128,16 +135,43 @@ const CONNECTION_URL = "mongodb+srv://Nishit_Shah:" + process.env.pass + "@clust
 mongoose.connect(CONNECTION_URL)
     .then(() => {
         console.log("Connection open!!");
+
     })
     .catch(err => {
         console.log("Connection failed!: ");
         console.log(err);
     })
+
 // mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 //     .then(() => app.listen(3000, () => console.log("Server connected to 3000")))
 //     .catch((error) => console.log(error));
 
+passport.use(profileDetails.createStrategy());
+passport.serializeUser(function(user,done)
+{
+    done(null, user.id);
+});
 
+passport.deserializeUser(function(id,done){
+    profileDetails.findById(id, function(err,user)
+    {
+        done(err,user);
+    });
+});
+
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENTID,
+    clientSecret: process.env. CLIENTSECRET,
+    callbackURL: "http://localhost:3000/auth/google/profile",
+    userProfileURL:"https://www.googleapis.com/oauth2/v3/userinfo"
+ },
+ function(accessToken, refreshToken, profile,cb) {
+    console.log(profile);
+    profileDetails.findOrCreate({googleId : profile.id}, function (err, user){
+        return(cb,user)
+    });
+  }
+));
 //Redirection
 app.get('/', (req, res) => {
     res.render('home')
@@ -150,6 +184,13 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     res.render('register');
 });
+
+app.get('/auth/google', passport.authenticate('google',{scope:['profile']}));
+
+app.get('/auth/google/profile', passport.authenticate('google', {failureRedirect:"/login"}),
+function(req,res){
+    res.redirect("/HamroChat-home/:id");
+})
 app.get('/home', (req, res) => {
     res.render('home');
 });
@@ -209,6 +250,19 @@ app.get('/HamroChat-home/:id', async (req, res) => {
                 // console.log(e)
             })
     }
+});
+
+app.get('/HamroChat-home/:id', function(req,res){
+    const { id } = req.params;
+    
+    if(req.isAuthenticated())
+    {
+        res.redirect('/HamroCHAT-home/' + id)
+    }
+    else
+    {
+        res.redirect("/login")
+    }
 })
 app.get('/HamroChat-user-profile/:id/:id2', async (req, res) => {
     const { id, id2 } = req.params
@@ -264,6 +318,20 @@ app.post("/register", function (req, res) {
 
     detailsave.save();
     res.redirect('login?registration=successful')
+    profileDetails.register({username:req.body.email}, req.body.pass2, function(err,user)
+    {
+        if(err)
+        {
+            console.log(err);
+            res.redirect("/register");
+        }
+        else
+        {
+            passport.authenticate("local") (req,res,function(){
+                res.redirect('login?registration=successful')
+            });
+        }
+    });
 })
 
 app.post("/login", (req, res) => {
@@ -287,16 +355,34 @@ app.post("/login", (req, res) => {
             console.log("User not Found!");
             console.log(err)
         })
-});
-
-
-
-// io.on('connection',socket =>{
-//     socket.on('new-user-joined',name=>{
-//         user[socket.id] = name;
-//         socket.broadcast.emit('user-joined');
-//     })
-//     socket.on('send',message=>{
-//         socket.broadcast.emit('receive',{message:message,name:user[socket.id]})
-//     })
-// })
+        // const user = new profileDetails({
+        //     email:req.body.email,
+        //     password: req.body.pass
+        // });
+        // console.log(req.body.email);
+        // console.log(req.body.pass);
+        // req.login(user, function(err)
+        // {
+        //     if(err){
+        //         console.log(err);
+        //     }
+        //     else
+        //     {
+        //         passport.authenticate("local")(req,res,function()
+        //         {
+        //             profileDetails.findOne({ email: email })
+        //                 .then(data => {
+        //                     console.log(data);
+        //                     const pass = req.body.pass
+        //                     if (data.password === pass) {
+        //                         profileDetails.updateOne({ _id: data._id }, { $set: { isOnline: 'true' } })
+        //                         console.log("User logged in. User is now online")
+        //                         res.redirect("HamroChat-home/" + data._id)
+        //                     }
+        //                 })
+        //         })
+        //     }
+        // }
+    });
+        
+                        
