@@ -81,18 +81,6 @@ function hideunhidepass() {
         password.type = "password";
     }
 };
-// Disables Ctrl+U
-document.onkeydown = function (e) {
-    if (e.ctrlKey &&
-        (e.keyCode === 67 ||
-            e.keyCode === 86 ||
-            e.keyCode === 85 ||
-            e.keyCode === 117)) {
-        return false;
-    } else {
-        return true;
-    }
-};
 // FORM VAlidation
 var submit = document.getElementById("reg-form");
 var error = document.getElementById("error");
@@ -165,5 +153,3 @@ if (helpBtn) {
         help.style.display = 'flex';
     });
 }
-
-
