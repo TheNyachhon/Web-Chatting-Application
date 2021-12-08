@@ -52,6 +52,18 @@
             <div class="image-container">
                 <img id="img" src="/imgs/saly-2.svg" alt="">
             </div>
+            <div id="forgot-pass-popup">
+                <div id="popup">
+                    <img src="https://c.tenor.com/gzZyXppSYFoAAAAC/kirk-shocked.gif" alt="" srcset="">
+                    <div class="text">
+                        Relax and try to remember your password.
+                    </div>
+                    
+                </div>
+                <button id="thanks-btn">
+                    Thanks!
+                </button>
+            </div>
             <div class="form">
                 <div class="form-container">
                     <h1>Login</h1>
@@ -71,8 +83,8 @@
                                 <i class="far fa-eye" id="see-pass" onclick="hideunhidepass()"></i>
                             </div>
                         </div>
-                        <div class="icon-input forgot-pass">
-                            <a href="#">Forgot password?</a>
+                        <div class="icon-input forgot-pass-box">
+                            <span id="forgot-pass">Forgot password?</span>
                             <i class="far fa-sad-cry"></i>
                         </div>
                         <div class="submit-btn">
@@ -96,6 +108,7 @@
             </div>
         </section>
         <script src="/validate.js"></script>
+        <script src="/forgotpass.js"></script>
         <script src="/copypaste.js"></script>
 
     </main>

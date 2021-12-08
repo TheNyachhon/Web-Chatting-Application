@@ -409,17 +409,61 @@ input:focus{
 .submit-btn-2 i{
     color:#202C59A5;
 }
-/* FORGOT PASS */
-.forgot-pass{
+/* FORGOT PASSWORD */
+#forgot-pass-popup{
+    display: none;
+    position:fixed;
+    top:0;
+    right:0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#thanks-btn{
+    background-color: rgb(87, 87, 87);
+    font-size:1.2em;
+    padding:1em;
+    color:white;
+    border:none;
+    border-radius: 1em;
+}
+#thanks-btn:active{
+    transform:translateY(0.2em);
+}
+#popup{
+    background-color: whitesmoke;
+    box-shadow: 0 0 2em #000000AA;
+    border-radius:2em;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    align-items: center;
+    margin-bottom:1em;
+}
+#popup>.text{
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    background-color: #BB0000;
+    padding:1em;
+}
+#popup>img{
+    border-radius: 1em;
+}
+#forgot-pass{
+    cursor: pointer;
+    color:purple;
+}
+.forgot-pass-box{
     display: flex;
     justify-content: flex-end;
     margin:1em;
 }
-.forgot-pass a{
-    margin-right: 1em;
-    font-size: 0.9em;
-}
-.forgot-pass i{
+.forgot-pass-box i{
+    margin-left:0.5em;
     color: navy;
 }
 /* sign in with google */
